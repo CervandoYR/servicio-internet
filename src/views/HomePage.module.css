@@ -1,0 +1,428 @@
+/* src/views/HomePage.module.css */
+
+/* Globales */
+.homePage {
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Clase para resaltar palabras */
+.highlight {
+  color: var(--color-secundario);
+  font-weight: 700;
+}
+.highlight2 {
+  color: var(--color-peligro);
+  font-weight: 700;
+}
+
+/* Hero Section */
+.heroSection {
+  /* El fondo se aplica inline en el JSX */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.heroContent {
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 1.4rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.btnCtaHero {
+  background-color: var(--color-secundario);
+  color: #000;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 0.85rem 2.2rem;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btnCtaHero:hover {
+  background-color: #e6b800;
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* Secciones Generales */
+.sectionTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  margin-bottom: 1.5rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+/* Beneficios Carousel */
+.benefitsSection .carousel {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.benefitsSection .carousel-inner {
+  overflow: hidden;
+  /* Damos una altura fija al contenedor del carrusel */
+  height: 550px; 
+}
+
+.benefitsSection .carousel-item {
+  /* Hacemos que el item ocupe la altura */
+  height: 550px; 
+  transition: transform 0.6s ease-in-out;
+}
+
+.benefitCard {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  max-width: 500px;
+  width: 90%; /* Hacemos que sea un poco responsive */
+  height: 500px; /* Altura fija de la tarjeta */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centramos el contenido */
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 1.5rem auto; /* Centramos la tarjeta */
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.benefitImg {
+  width: 100%;
+  max-width: 350px; /* Limitamos el tamaño de la imagen */
+  height: auto; /* Altura automática */
+  max-height: 250px; /* Máxima altura */
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.benefitTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.benefitText {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Ajustamos los controles de Bootstrap */
+.benefitsSection :global(.carousel-control-prev),
+.benefitsSection :global(.carousel-control-next) {
+  width: 50px;
+  height: 50px;
+  background: rgba(29, 99, 255, 0.7);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background 0.3s ease;
+  z-index: 2;
+}
+.benefitsSection :global(.carousel-control-prev:hover),
+.benefitsSection :global(.carousel-control-next:hover) {
+  background: var(--color-primario);
+}
+
+.benefitsSection :global(.carousel-indicators) {
+  bottom: -40px;
+  z-index: 2;
+}
+
+.benefitsSection :global(.carousel-indicators button) {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: none;
+  margin: 0 6px;
+}
+
+.benefitsSection :global(.carousel-indicators .active) {
+  background-color: var(--color-secundario);
+}
+
+
+/* Planes */
+.planCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Para que todas las tarjetas tengan la misma altura */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.planCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.planTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.planSpeed {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  margin: 0.5rem 0;
+}
+
+.planImg {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.planPrice {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--bs-danger);
+  margin-bottom: 1.5rem;
+}
+
+.btnCtaPlan {
+  background-color: var(--color-secundario);
+  color: var(--color-primario);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btnCtaPlan:hover {
+  background-color: #e6b800;
+  color: var(--color-primario);
+  transform: translateY(-3px);
+}
+
+.availability {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Info Section */
+.infoCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
+}
+
+.infoIcon {
+  font-size: 2.5rem;
+  color: var(--color-primario);
+  margin-bottom: 1rem;
+}
+/* Colores específicos de íconos */
+.infoIcon.bi-speedometer2 { color: var(--bs-primary); }
+.infoIcon.bi-wifi { color: var(--bs-success); }
+.infoIcon.bi-hdd-network { color: var(--bs-warning); }
+
+
+.infoTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.infoText {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Contact Section */
+.contactSection {
+  background: #f8f9fa;
+  padding: 3rem 0;
+}
+
+/* Texto SEO */
+.seoText {
+  font-size: 1.1rem;
+  color: #555;
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.seoTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.seoSubtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.seoIntro,
+.seoTextContent {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.seoList {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.seoList li {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.seoList li strong {
+  color: var(--color-primario);
+}
+
+.btnSeoCta {
+  background-color: var(--color-secundario);
+  color: var(--color-primario);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnSeoCta:hover {
+  background-color: #e6b800;
+  color: var(--color-primario);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .heroSection { min-height: 60vh; }
+  .heroTitle { font-size: 2.4rem; }
+  .heroSubtitle { font-size: 1.2rem; }
+  .sectionTitle { font-size: 2rem; }
+  .benefitsSection .carousel-inner { height: 520px; }
+  .benefitCard { height: 480px; }
+  .benefitImg { max-height: 220px; }
+  .planImg { max-height: 150px; }
+  .seoTitle { font-size: 1.8rem; }
+  .seoSubtitle { font-size: 1.3rem; }
+  .seoIntro, .seoTextContent, .seoList li { font-size: 1rem; }
+  .btnSeoCta { font-size: 1rem; padding: 0.6rem 1.2rem; }
+}
+
+@media (max-width: 768px) {
+  .benefitsSection .carousel-inner { height: 500px; }
+  .benefitCard { height: 460px; }
+  .benefitTitle { font-size: 1.4rem; }
+  .benefitText { font-size: 1rem; }
+}
+
+@media (max-width: 576px) {
+  .heroSection { min-height: 50vh; padding: 1rem; }
+  .heroTitle { font-size: 2rem; }
+  .heroSubtitle { font-size: 1rem; }
+  .btnCtaHero, .btnCtaPlan { font-size: 1rem; padding: 0.6rem 1.5rem; }
+  .sectionTitle { font-size: 1.6rem; }
+  .planSpeed { font-size: 1.5rem; }
+  .planPrice { font-size: 1.25rem; }
+  
+  .benefitsSection .carousel-inner { height: 480px; }
+  .benefitCard { height: 440px; }
+  .benefitImg { max-height: 200px; }
+  .benefitTitle { font-size: 1.3rem; }
+  .benefitText { font-size: 0.9rem; }
+  
+  .benefitsSection :global(.carousel-control-prev),
+  .benefitsSection :global(.carousel-control-next) {
+    width: 40px;
+    height: 40px;
+  }
+  .benefitsSection :global(.carousel-indicators button) {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .seoTitle { font-size: 1.5rem; }
+  .seoSubtitle { font-size: 1.1rem; }
+  .seoIntro, .seoTextContent, .seoList li { font-size: 0.95rem; }
+  .btnSeoCta { font-size: 0.9rem; padding: 0.5rem 1rem; }
+}

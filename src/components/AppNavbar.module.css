@@ -1,0 +1,49 @@
+/* src/components/AppNavbar.module.css */
+
+.navbarCustom {
+  background-color: var(--color-navbar);
+  transition: all 0.3s ease-in-out;
+}
+
+.navbarToggler {
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out, background-color 0.3s;
+  animation: pulseGlow 1.5s infinite alternate;
+  border: none;
+  font-size: 24px;
+  color: var(--color-navbar);
+}
+
+/* Animación de brillo */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+  }
+}
+
+.navbarToggler:hover {
+  background-color: #ff8f7b;
+  transform: scale(1.1);
+}
+
+.navbarCollapse .nav-link {
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbarCollapse .nav-link:hover {
+  color: var(--color-secundario);
+}
+
+.navbarCollapse .nav-link.active {
+  color: var(--color-secundario);
+  text-decoration: underline;
+}
+
+/* Animaciones de slide (Bootstrap 5 las maneja diferente, 
+   pero podemos forzarlas si es necesario. 
+   React-Bootstrap usa transiciones CSS simples) */

@@ -1,0 +1,154 @@
+/* src/views/CoberturaPage.module.css */
+
+.coverageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f3f5 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  margin-top: 8vh; /* Lo tenías en tu CSS */
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  background: linear-gradient(to right, var(--color-secundario), var(--color-peligro));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  margin-bottom: 2rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.coverageListContainer {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.coverageListContainer:hover {
+  transform: translateY(-5px);
+}
+
+.coverageList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left; /* Alineamos la lista a la izquierda */
+}
+
+.coverageList li {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.coverageList li:hover {
+  background: #f1f3f5;
+  transform: translateX(5px);
+}
+
+.listIcon {
+  color: var(--color-navbar); /* Usamos un color que ya tienes */
+  font-size: 1.3rem;
+}
+
+.coverageLink {
+  color: var(--bs-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.coverageLink:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.mapContainer {
+  position: relative;
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.loaderContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 6px solid #e9ecef;
+  border-top: 6px solid var(--color-navbar);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.mapFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .mapContainer {
+    height: 350px;
+  }
+}
+
+@media (max-width: 576px) {
+  .coverageContainer {
+    padding: 1.5rem 1rem;
+    margin-top: 4vh;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .coverageList li {
+    font-size: 1rem;
+  }
+  .mapContainer {
+    height: 300px;
+  }
+}
