@@ -17,12 +17,9 @@ function AppNavbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // --- 💡 FIX #2: "INICIO" NO FUNCIONA ---
-  // Se añade window.scrollTo(0, 0) para forzar el scroll al inicio
-  // en cada navegación.
   const handleNav = (path) => {
     navigate(path);
-    window.scrollTo(0, 0); // <--- AÑADIDO
+    window.scrollTo(0, 0); 
     setExpanded(false);
   };
 
@@ -59,7 +56,6 @@ function AppNavbar() {
       }}
     >
       <Container fluid="lg">
-        {/* --- 💡 FIX #1: CURSOR --- (Añadido al Brand también) */}
         <Navbar.Brand 
           as={Link} 
           to="/" 
@@ -67,14 +63,23 @@ function AppNavbar() {
           style={{ 
             fontSize: '1.5rem', 
             color: 'var(--text-primary)', 
-            cursor: 'pointer' // <--- AÑADIDO
+            cursor: 'pointer'
           }}
-          onClick={() => setExpanded(false)} // Cierra el menú si se hace clic en el logo en móvil
+          onClick={() => setExpanded(false)}
         >
           <motion.div animate={{ rotate: [0, -10, 10, 0] }} transition={{ repeat: Infinity, duration: 4 }}>
-            <Rocket size={28} className="me-2 text-gradient" />
+            
+            {/* --- 💡 AQUÍ ESTÁ EL ARREGLO --- */}
+            {/* Quitamos la clase 'text-gradient' y le damos un color
+              sólido neón directamente con 'style'.
+            */}
+            <Rocket 
+              size={28} 
+              className="me-2" 
+              style={{ color: 'var(--accent-neon)' }} // <--- ASÍ
+            />
           </motion.div>
-          NetSystems {/* Tu nombre original era NetFuture, lo cambié a NetSystems como en el Brand */}
+          NetSystems
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ border: 'none' }}>
@@ -95,7 +100,6 @@ function AppNavbar() {
           <Nav className="ms-auto align-items-center">
             {/* --- Versión de escritorio (animada) --- */}
             <div className="d-none d-lg-flex">
-              {/* --- 💡 FIX #1: CURSOR --- (Añadido style={{ cursor: 'pointer' }}) */}
               <Nav.Link as={motion.div} whileHover={{ color: 'var(--accent-neon)', scale: 1.1 }} onClick={() => handleNav('/')} style={{ cursor: 'pointer' }}>Inicio</Nav.Link>
               <Nav.Link as={motion.div} whileHover={{ color: 'var(--accent-neon)', scale: 1.1 }} onClick={() => scrollToSection('plans')} style={{ cursor: 'pointer' }}>Planes</Nav.Link>
               <Nav.Link as={motion.div} whileHover={{ color: 'var(--accent-neon)', scale: 1.1 }} onClick={() => handleNav('/cobertura')} style={{ cursor: 'pointer' }}>Cobertura</Nav.Link>
@@ -113,7 +117,6 @@ function AppNavbar() {
                   animate="visible"
                   exit="exit"
                 >
-                  {/* --- 💡 FIX #1: CURSOR --- (Añadido style={{ cursor: 'pointer' }}) */}
                   <Nav.Link as={motion.div} variants={mobileLinkVariants} onClick={() => handleNav('/')} style={{ cursor: 'pointer' }}>Inicio</Nav.Link>
                   <Nav.Link as={motion.div} variants={mobileLinkVariants} onClick={() => scrollToSection('plans')} style={{ cursor: 'pointer' }}>Planes</Nav.Link>
                   <Nav.Link as={motion.div} variants={mobileLinkVariants} onClick={() => handleNav('/cobertura')} style={{ cursor: 'pointer' }}>Cobertura</Nav.Link>
