@@ -4,22 +4,20 @@ import L from 'leaflet';
 import { Wifi } from 'lucide-react';
 import ReactDOMServer from 'react-dom/server';
 
-// --- INICIO DE LA CORRECCIÓN (Modo Vite/ESM) ---
-// Importar las imágenes usando ESM (el 'import' de Vite)
+// Importar las imágenes (esto está perfecto)
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
-// Fix para el icono por defecto de Leaflet (ahora usando las variables importadas)
+// Fix de Leaflet (esto está perfecto)
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: markerIcon2x,
   iconUrl: markerIcon,
   shadowUrl: markerShadow,
 });
-// --- FIN DE LA CORRECCIÓN ---
 
-// Icono personalizado (esto está bien)
+// Icono personalizado (esto está perfecto)
 const customIcon = new L.DivIcon({
   html: ReactDOMServer.renderToString(
     <div style={{
@@ -43,9 +41,18 @@ const customIcon = new L.DivIcon({
 
 
 function InteractiveMap({ center, zoom, markers }) {
-  // TileLayer con tema oscuro
-  const darkTileUrl = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png';
-  const attribution = '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+
+  // --- 💡 AQUÍ ESTÁ EL ARREGLO ---
+
+  // ANTES (Stadia - Requiere autenticación de dominio)
+  // const darkTileUrl = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png';
+  // const attribution = '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+
+  // AHORA (CartoDB - 100% gratis y sin autenticación)
+  const darkTileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+  const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
+  // --- FIN DEL ARREGLO ---
 
   return (
     <MapContainer 
@@ -56,7 +63,7 @@ function InteractiveMap({ center, zoom, markers }) {
     >
       <TileLayer
         attribution={attribution}
-        url={darkTileUrl}
+        url={darkTileUrl} // <-- Se usa la nueva URL
       />
       
       <Circle 
