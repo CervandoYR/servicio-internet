@@ -2,7 +2,6 @@
   "name": "servicio-internet",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://cervandoyr.github.io/servicio-internet",
   "type": "module",
   "scripts": {
     "dev": "vite",

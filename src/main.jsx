@@ -34,7 +34,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/servicio-internet/">
+    <BrowserRouter >
       <Routes>
         {/* Usamos App.jsx como "Layout" principal */}
         <Route path="/" element={<App />}>
