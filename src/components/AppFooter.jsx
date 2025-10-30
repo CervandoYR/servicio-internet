@@ -33,7 +33,7 @@ function AppFooter() {
         <Row>
           {/* Contacto */}
           <Col md={4} className="mb-4">
-            <h5 className="text-uppercase fw-bold text-gradient mb-3">NetFuture</h5>
+            <h5 className="text-uppercase fw-bold text-gradient mb-3">NetSystems</h5>
             <p className="text-secondary">
               Conectando tu mundo a la velocidad de la luz.
             </p>
@@ -68,7 +68,6 @@ function AppFooter() {
             <div className="d-flex justify-content-md-end">
               <SocialIcon href="https://www.facebook.com/servitektechnologies" icon={Facebook} />
               <SocialIcon href="#" icon={Instagram} />
-              <SocialIcon href="https://www.linkedin.com/in/william-javier-yactayo-cervantes-b8115198/" icon={Linkedin} />
             </div>
           </Col>
         </Row>

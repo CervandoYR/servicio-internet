@@ -63,7 +63,7 @@ function InteractiveMap({ center, zoom, markers }) {
     >
       <TileLayer
         attribution={attribution}
-        url={darkTileUrl} // <-- Se usa la nueva URL
+        url={darkTileUrl}
       />
       
       <Circle 
