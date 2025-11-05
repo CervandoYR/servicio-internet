@@ -1,66 +1,139 @@
-import React from 'react';
+// src/pages/HomePage.jsx
+import React, { Suspense, useEffect } from 'react'; // ← AÑADIDO useEffect
 import { Container } from 'react-bootstrap';
-import { SectionWrapper } from '../components/SectionWrapper';
+import { motion } from 'framer-motion';
 
-// Importar todas las secciones
-import Hero from '../components/Hero';
-import Benefits from '../components/Benefits'; // <-- NUEVO
-import Plans from '../components/Plans';
-import Info from '../components/Info'; // <-- NUEVO
-import ContactForm from '../components/ContactForm';
-import SeoText from '../components/SeoText'; // <-- NUEVO
+// Lazy load de componentes pesados
+const Hero = React.lazy(() => import('../components/Hero'));
+const BenefitsMarquee = React.lazy(() => import('../components/Benefits'));
+const Plans = React.lazy(() => import('../components/Plans'));
+const Info = React.lazy(() => import('../components/Info'));
+const ContactForm = React.lazy(() => import('../components/ContactForm'));
+const SeoText = React.lazy(() => import('../components/SeoText'));
+
+// Animación de entrada
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, ease: "easeOut" },
+  viewport: { once: true, margin: "-100px" }
+};
 
 function HomePage() {
+  // --- NOTIFICAR AL NAVBAR CUANDO ESTÁ LISTO ---
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event('homepage-ready'));
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+  
+
   return (
-    <div id="home">
-      {/* 1. HERO (No usa SectionWrapper para carga instantánea) */}
-      <Hero /> 
+    <main id="home" className="overflow-hidden">
+      {/* 1. HERO */}
+      <Suspense fallback={<div style={{ height: '100vh', background: '#0a0a0f' }} />}>
+        <Hero />
+      </Suspense>
 
-      {/* 2. BENEFICIOS (Carrusel) */}
-      <Container id="benefits" className="my-5 py-5">
-        <Benefits />
-      </Container>
-      
-      {/* 3. PLANES (Tarjetas 3D) */}
-      <Container id="plans" className="my-5 py-5" style={{ minHeight: '100vh' }}>
-        <SectionWrapper>
-          <h2 className="display-3 fw-bold text-center mb-4">
-            Planes de <span className="text-gradient">Ultra-Velocidad</span>
-          </h2>
-          <p className="lead fs-4 text-center text-secondary mb-5">
-            Elige la conexión del futuro. Simétrica, estable y sin límites.
-          </p>
-          <Plans />
-           <p className="text-center text-secondary mt-4">
-            *Verifica disponibilidad de internet en tu zona de Chancay
-          </p>
-        </SectionWrapper>
-      </Container>
+      {/* 2. BENEFICIOS */}
+      <Suspense fallback={<div className="py-5" style={{ height: '600px' }} />}>
+        <section id="beneficios" className="py-5">
+          <BenefitsMarquee />
+        </section>
+      </Suspense>
 
-      {/* 4. INFO (Por qué Fibra) */}
-      <Container id="info" className="my-5 py-5">
-        <Info />
-      </Container>
+      {/* 3. PLANES */}
+      <Suspense fallback={<div className="py-5" style={{ height: '800px' }} />}>
+        <section id="planes" className="py-5" style={{ background: '#0a0a0f' }}>
+          <Container>
+            <motion.div {...fadeInUp} className="text-center mb-5">
+              <h2 style={{
+                fontSize: '4.5rem',
+                fontWeight: '900',
+                color: '#ffffff',
+                marginBottom: '1rem',
+                lineHeight: '1.05',
+                textShadow: '0 0 40px rgba(0, 212, 255, 0.4)'
+              }}>
+                Planes de <span style={{
+                  background: 'linear-gradient(90deg, #00d4ff, #a855f7)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: '900'
+                }}>Ultra-Velocidad</span>
+              </h2>
+              <p style={{
+                color: '#c8d6ff',
+                fontSize: '1.4rem',
+                maxWidth: '800px',
+                margin: '0 auto',
+                fontWeight: '500'
+              }}>
+                Elige la conexión del futuro. Simétrica, estable y sin límites.
+              </p>
+            </motion.div>
 
-      {/* 5. CONTACTO (Formulario) */}
-      <Container id="contacto" className="my-5 py-5">
-        <SectionWrapper>
-          <h2 className="display-3 fw-bold text-center mb-4">
-            Contacta a un <span className="text-gradient">Especialista</span>
-          </h2>
-          <p className="lead fs-4 text-center text-secondary mb-5">
-             ¿Tienes alguna consulta? Envíanos un mensaje.
-          </p>
-          <ContactForm />
-        </SectionWrapper>
-      </Container>
-      
-      {/* 6. TEXTO SEO (Final) */}
-      <Container id="seo" className="my-5 py-5">
-        <SeoText />
-      </Container>
+            <Plans />
 
-    </div>
+            <p className="text-center mt-5" style={{ color: '#94a3b8', fontSize: '1rem' }}>
+              *Verifica disponibilidad de internet en tu zona de Chancay
+            </p>
+          </Container>
+        </section>
+      </Suspense>
+
+      {/* 4. INFO */}
+      <Suspense fallback={<div className="py-5" style={{ height: '700px' }} />}>
+        <section id="fibra" className="py-5">
+          <Info />
+        </section>
+      </Suspense>
+
+      {/* 5. CONTACTO */}
+      <Suspense fallback={<div className="py-5" style={{ height: '700px' }} />}>
+        <section id="contacto" className="py-5" style={{ background: '#0a0a0f' }}>
+          <Container>
+            <motion.div {...fadeInUp} className="text-center mb-5">
+              <h2 style={{
+                fontSize: '4.2rem',
+                fontWeight: '900',
+                color: '#ffffff',
+                marginBottom: '1rem',
+                lineHeight: '1.05'
+              }}>
+                Contacta a un <span style={{
+                  background: 'linear-gradient(90deg, #00d4ff, #a855f7)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: '900'
+                }}>Especialista</span>
+              </h2>
+              <p style={{
+                color: '#c8d6ff',
+                fontSize: '1.35rem',
+                maxWidth: '700px',
+                margin: '0 auto',
+                fontWeight: '500'
+              }}>
+                ¿Tienes alguna consulta? Envíanos un mensaje.
+              </p>
+            </motion.div>
+
+            <ContactForm />
+          </Container>
+        </section>
+      </Suspense>
+
+      {/* 6. SEO TEXT */}
+      <Suspense fallback={<div className="py-5" style={{ height: '400px' }} />}>
+        <section id="seo" className="py-5">
+          <Container>
+            <SeoText />
+          </Container>
+        </section>
+      </Suspense>
+    </main>
   );
 }
 

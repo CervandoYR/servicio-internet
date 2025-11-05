@@ -1,3 +1,5 @@
+/* src/index.css */
+
 /* --- 1. IMPORTACIÓN DE FUENTE (INTER) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap');
 
@@ -15,9 +17,20 @@
   /* Sombra para el glow */
   --neon-shadow: 0 0 10px var(--accent-neon), 0 0 20px var(--accent-neon), 0 0 30px var(--accent-cyan);
   --neon-shadow-light: 0 0 5px var(--accent-neon), 0 0 10px var(--accent-neon);
+
+  .text-light { color: #e0e7ff !important; }
+  .text-info { color: #00d4ff !important; }
+  .lead { color: #b0c4ff !important; }
 }
 
 /* --- 3. RESET Y ESTILOS BASE --- */
+
+/* --- CORRECCIÓN RESPONSIVE: Base font-size --- */
+html {
+  /* Establece la base para que 1rem = 16px */
+  font-size: 16px; 
+}
+
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -49,15 +62,18 @@ body::-webkit-scrollbar-thumb {
 
 /* --- 4. CLASES DE UTILIDAD --- */
 
+
 /* Efecto Glassmorphism */
 .glassmorphism {
-  background: rgba(17, 17, 24, 0.6); /* --bg-dark con alfa */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: rgba(10, 10, 15, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
+.scrolled-nav {
+  background: rgba(10, 10, 15, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+}
 /* Texto en Gradiente (para Títulos) */
 .text-gradient {
   background: linear-gradient(90deg, var(--accent-neon), var(--accent-cyan), var(--accent-purple));
@@ -80,6 +96,29 @@ body::-webkit-scrollbar-thumb {
     box-shadow: 0 0 20px var(--accent-neon), 0 0 30px var(--accent-cyan);
   }
 }
+
+/* --- CORRECCIÓN RESPONSIVE: Títulos --- */
+/* Esto reduce el tamaño de las fuentes grandes (como tu 4.5rem)
+  en pantallas más pequeñas para evitar que se desborden.
+*/
+h1, .h1 {
+  /* p.ej. 4rem en desktop, 2.5rem en móvil */
+  font-size: clamp(2.5rem, 1.2rem + 3.8vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+h2, .h2 {
+  /* p.ej. 3rem en desktop, 2rem en móvil */
+  font-size: clamp(2rem, 1.3rem + 2.2vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+h3, .h3 {
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+  font-weight: 700;
+}
+/* --- Fin Corrección Responsive --- */
+
 
 /* --- 5. SOBREESCRITURAS DE BOOTSTRAP (TEMA OSCURO) --- */
 
@@ -157,4 +196,26 @@ body::-webkit-scrollbar-thumb {
 @media (max-width: 768px) {
   .carousel-control-prev { left: -20px; }
   .carousel-control-next { right: -20px; }
+}
+/* Opcional: en tu index.css */
+@media (max-width: 768px) {
+  [style*="minWidth: 460px"] { min-width: 320px !important; }
+}
+
+
+/* --- CORRECCIÓN DE LAYOUT DE VITE --- */
+/*
+  Los estilos de plantilla de Vite (.logo, .card, etc.)
+  fueron eliminados para evitar conflictos.
+*/
+
+/* CORRECCIÓN: Restablecer #root para que no centre
+  la página y permita que el layout fluido funcione.
+*/
+#root {
+  width: 100%;
+  max-width: 100%; /* Permitir que el contenido vaya de borde a borde */
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Restaurar el valor por defecto (MUY IMPORTANTE) */
 }
